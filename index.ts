@@ -12,8 +12,13 @@ import getActivityByUnit from '../../mapping-templates/getActivityByUnit/resolve
 export { Activity }
 export { ResponseData }
 
+// THIS IS AN EXAMPLE OF A GRAPHQL API DECLARATION USING TYPESCRIPT
+
+// Decorator that indicates this is a class and data types to be used as a method args
+
 @ArgsType()
-export class addActivityArgs {
+export class addActivityArgs
+{
   @Field(() => ID)
   Id: string
 
@@ -39,8 +44,10 @@ export class addActivityArgs {
   Status: string
 }
 
+// Decorator that indicates this is a class and data types to be used as a method args
 @ArgsType()
-export class getActivityDetailByIdArgs {
+export class getActivityDetailByIdArgs
+{
   @Field(() => ID)
   ActivityID: string
 
@@ -48,14 +55,18 @@ export class getActivityDetailByIdArgs {
   activity: string
 }
 
+// Decorator that indicates this is a class and data types to be used as a method args
 @ArgsType()
-export class getActivityByIdArgs {
+export class getActivityByIdArgs
+{
   @Field(() => ID)
   Id: string
 }
 
+// Decorator that indicates this is a class and data types to be used as a method args
 @ArgsType()
-export class getActivityByUnitArgs {
+export class getActivityByUnitArgs
+{
   @Field()
   Material: string
 
@@ -63,8 +74,10 @@ export class getActivityByUnitArgs {
   Unit: string
 }
 
+// Decorator that indicates this is a class and data types to be used as a method args
 @ArgsType()
-export class updateActivityArgs {
+export class updateActivityArgs
+{
   @Field()
   Id: string
 
@@ -75,8 +88,10 @@ export class updateActivityArgs {
   attrValue: string
 }
 
+// Decorator that indicates this is a class and data types to be used as an object
 @ObjectType({ description: 'Object representing an object to response a request' })
-export class ActivityResponse {
+export class ActivityResponse
+{
   @Field()
   status: number
 
@@ -87,35 +102,44 @@ export class ActivityResponse {
   data: Activity
 }
 
+// Decorator that indicates this is a class to be used as methods
 @Resolver(Activity)
-export class ActivityResolver {
+export class ActivityResolver
+{
+    // IN GRAPHQL "Query" type is used to get data
   @Query(() => ResponseData)
-  getActivities() {
+  getActivities()
+  {
     return getActivities()
   }
 
   @Query(() => ResponseData)
-  getActivityById(@Args() { Id }: getActivityByIdArgs) {
+  getActivityById(@Args() { Id }: getActivityByIdArgs)
+  {
     return getActivityById({ Id })
   }
 
   @Query(() => ResponseData)
-  getActivityDetailById(@Args() data: getActivityDetailByIdArgs) {
+  getActivityDetailById(@Args() data: getActivityDetailByIdArgs)
+  {
     return getActivityDetailById(data)
   }
 
   @Query(() => ResponseData)
-  getActivityByUnit(@Args() data: getActivityByUnitArgs) {
+  getActivityByUnit(@Args() data: getActivityByUnitArgs)
+  {
     return getActivityByUnit(data)
   }
-
+  // IN GRAPHQL "Query" type is used to modofy data
   @Mutation(() => ActivityResponse)
-  addActivity(@Args() data: addActivityArgs) {
+  addActivity(@Args() data: addActivityArgs)
+  {
     return addActivity(data)
   }
 
   @Mutation(() => ActivityResponse)
-  updateActivity(@Args() data: addActivityArgs) {
+  updateActivity(@Args() data: addActivityArgs)
+  {
     return updateActivity(data)
   }
 }

@@ -1,6 +1,8 @@
 import { ObjectType, Field, ID, Int } from 'type-graphql'
 
 @ObjectType({ description: 'Object representing an Activity' })
+
+// Declaration of the Class and its propertie's data types
 export class Activity {
   @Field(() => ID, { nullable: true })
   Id?: string
@@ -14,6 +16,7 @@ export class Activity {
   @Field()
   Material: string
 
+// This property can be null 
   @Field({ nullable: true })
   Unit: string
 
